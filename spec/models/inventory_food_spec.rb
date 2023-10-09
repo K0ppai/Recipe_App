@@ -6,8 +6,8 @@ RSpec.describe InventoryFood, type: :model do
 
   it 'is valid with valid attributes' do
     inventory_food = InventoryFood.new(
-      inventory: inventory,
-      food: food,
+      inventory:,
+      food:,
       quantity: 10
     )
     expect(inventory_food).to be_valid
@@ -15,16 +15,16 @@ RSpec.describe InventoryFood, type: :model do
 
   it 'is not valid without a quantity' do
     inventory_food = InventoryFood.new(
-      inventory: inventory,
-      food: food
+      inventory:,
+      food:
     )
     expect(inventory_food).not_to be_valid
   end
 
   it 'is not valid if quantity is not a positive integer' do
     inventory_food = InventoryFood.new(
-      inventory: inventory,
-      food: food,
+      inventory:,
+      food:,
       quantity: -5
     )
     expect(inventory_food).not_to be_valid
