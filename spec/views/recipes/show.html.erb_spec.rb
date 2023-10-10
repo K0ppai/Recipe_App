@@ -41,5 +41,12 @@ RSpec.describe "recipes/index.html.erb", type: :feature do
         expect(page).to have_content(@recipe_food.calculated_total_value(@quantity, @price).to_s)
       end
     end
+
+    context "When opening a modal" do
+      it "can see the generate button" do
+        click_on("Generate shopping list")
+        expect(page).to have_link("Generate")
+      end
+    end
   end
 end
