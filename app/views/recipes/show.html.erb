@@ -1,0 +1,31 @@
+<div>
+  <h1 class="text-center"><%= @recipe.name %></h1>
+  <div>
+    <p>Preparation time: <%= @recipe.preparation_time %>
+      <% if @recipe.preparation_time <= 1 %>
+        hour
+      <% else %>
+        hours
+      <% end %>
+    </p>
+    <div>
+      <% if @recipe.public %>
+        <span>Public</span>
+      <% else %>
+        <span>Private</span>
+      <% end %>
+    </div>
+  </div>
+  <p>Cooking time: <%= @recipe.cooking_time %>
+    <% if @recipe.preparation_time <= 1 %>
+      hour
+    <% else %>
+      hours
+    <% end %>
+  </p>
+  <p><%= @recipe.description %></p>
+  <div>
+    <%= link_to 'Generate shopping list', new_recipe_path %>
+    <%= link_to 'Add ingredient', new_recipe_path %>
+  </div>
+</div>
