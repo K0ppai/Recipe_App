@@ -8,11 +8,7 @@ class RecipesController < ApplicationController
     @recipe_foods = @recipe.recipe_foods
   end
 
-  def shopping_list
-    
-  end
+  def shopping_list; end
 
-  def modal
-    
-  end
+  def modal; end
 end
