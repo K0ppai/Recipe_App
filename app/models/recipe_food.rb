@@ -3,4 +3,8 @@ class RecipeFood < ApplicationRecord
   belongs_to :food, class_name: 'Food', foreign_key: 'food_id'
 
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
+  def calculated_total_value(quantity, price)
+    quantity * price
+  end
 end
