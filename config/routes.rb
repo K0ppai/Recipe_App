@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to:"home#index"
   resources :foods
 
   resources :recipes, only: %i[index show new create destroy]
