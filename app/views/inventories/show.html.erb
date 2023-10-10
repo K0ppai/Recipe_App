@@ -1,0 +1,29 @@
+<div class="container custom-container">
+  <h1><%= @inventory.name %></h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @inventory.inventory_foods.each do |inventory_food| %>
+      <tr>
+        <td><%= inventory_food.food.name %></td>
+        <td><%= inventory_food.quantity %></td>
+        <td>
+          <%= form_for [@inventory, inventory_food], method: :delete, data: {
+          confirm: 'Are you sure?' } do |f| %> <%= f.hidden_field :food_id %>
+          <%= f.submit 'Remove', class: 'btn btn-danger' %> <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to 'Add Food', new_inventory_inventory_food_path(@inventory), class:
+  'btn btn-success' %>
+</div>
