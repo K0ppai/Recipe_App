@@ -29,3 +29,20 @@
     <%= link_to 'Add ingredient', new_recipe_path %>
   </div>
 </div>
+<table class="border-2 border-collapse">
+  <tr class="border-2 border-collapse">
+    <th class="border-2 border-collapse">
+      Food
+    </th>
+    <th class="border-2 border-collapse">
+      Quantity
+    </th>
+    <th class="border-2 border-collapse">
+      Value
+    </th>
+    <th class="border-2 border-collapse">
+      Actions
+    </th>
+  </tr>
+  <%= render partial: 'recipe_food', collection: @recipe_foods %>
+</table>
