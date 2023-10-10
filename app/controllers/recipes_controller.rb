@@ -7,4 +7,12 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe_foods = @recipe.recipe_foods
   end
+
+  def shopping_list
+    
+  end
+
+  def modal
+    
+  end
 end

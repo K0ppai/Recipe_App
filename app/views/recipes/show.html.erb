@@ -25,7 +25,9 @@
   </p>
   <p><%= @recipe.description %></p>
   <div>
-    <%= link_to 'Generate shopping list', new_recipe_path %>
+    <%= link_to 'Generate shopping list', modal_path, data: {
+      turbo_frame: 'modal'
+    } %>
     <%= link_to 'Add ingredient', new_recipe_path %>
   </div>
 </div>
