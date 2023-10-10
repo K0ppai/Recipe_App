@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+/* Will delete or modify later in the project */
+.custom-container {
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.center-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
