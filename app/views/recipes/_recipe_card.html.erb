@@ -1,0 +1,13 @@
+<li class="list-none border-2 p-4 px-10">
+  <a href="<%= recipe_path(recipe_card) %>" class="flex">
+    <div>
+      <span class="text-2xl font-bold">
+        <%= recipe_card.name %>
+      </span>
+    </div>
+    <span class="ml-10">
+      <%= recipe_card.description %>
+    </span>
+  </a>
+  <%= button_to 'Remove', recipes_path, method: :delete %>
+</li>
