@@ -7,9 +7,13 @@ class RecipeFood < ApplicationRecord
 
   before_save :set_total_value
 
-  after_save :update_totalvaluecounter
+  after_save :update_totalvaluecounter, :update_foodcounter
 
   private
+
+  def update_foodcounter
+    recipe.increment!(:foodcounter)
+  end
 
   def update_totalvaluecounter
     total_count = recipe.totalvaluecounter + totalvalue
