@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   root to: 'recipes#index'
   resources :foods, only: %i[new create]
 
+  resources :recipes, only: %i[index show new create destroy] do
+    resources :recipes_foods, only: %i[new create destroy]
+  end
+
   resources :inventories do
     resources :inventory_foods, only: %i[new create destroy]
   end

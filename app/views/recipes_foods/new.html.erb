@@ -1,0 +1,11 @@
+<%= form_with(model: @recipe_food, url:  recipe_recipes_foods_path, local: true) do |f| %>
+  <div>
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity %>
+  </div>
+  <div>
+    <%= f.label :food_id %>
+    <%= f.collection_select(:food_id, Food.all, :id, :name, prompt: 'Select Food') %>
+  </div>
+  <%= f.submit "Create Recipe Food" %>
+<% end %>

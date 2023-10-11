@@ -11,4 +11,33 @@ class RecipesController < ApplicationController
   def shopping_list; end
 
   def modal; end
+
+  def new
+    @recipe = Recipe.new
+  end
+
+  def create
+    @recipe = Recipe.new(recipe_params)
+    @recipe.user = current_user
+    if @recipe.save
+      redirect_to recipes_path
+    else
+      render :new
+    end
+  end
+
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    @recipe.recipe_foods.destroy_all
+    @recipe.destroy
+    redirect_to recipes_path, notice: 'Recipe deleted successfully!'
+  end
+
+  def new_food; end
+
+  private
+
+  def recipe_params
+    params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public)
+  end
 end

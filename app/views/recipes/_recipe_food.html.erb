@@ -4,11 +4,12 @@
   </td>
   <td>
     <%= recipe_food.quantity %>
+    <%= recipe_food.food.measurement_unit %>
   </td>
   <td>
-    <%= recipe_food.calculated_total_value(recipe_food.quantity,recipe_food.food.price) %>
+    <%= recipe_food.totalvalue %>
   </td>
   <td>
-    <a href="">Remove</a>
+    <%= button_to 'Remove', recipe_recipes_food_path(recipe_id: @recipe, id: recipe_food), method: :delete %>
   </td>
 </tr>

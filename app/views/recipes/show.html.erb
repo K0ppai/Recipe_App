@@ -8,12 +8,14 @@
         hours
       <% end %>
     </p>
+    <p>Total value counter <%= @recipe.totalvaluecounter %></p>
+    <p>Food counter <%= @recipe.foodcounter %></p>
     <div>
-      <% if @recipe.public %>
-        <span>Public</span>
-      <% else %>
-        <span>Private</span>
-      <% end %>
+      <input type="checkbox" <% if @recipe.public %>
+          checked
+        <% end %>
+        >
+      <label>Public</label>
     </div>
   </div>
   <p>Cooking time: <%= @recipe.cooking_time %>
@@ -28,7 +30,7 @@
     <%= link_to 'Generate shopping list', modal_path, data: {
       turbo_frame: 'modal'
     } %>
-    <%= link_to 'Add ingredient', new_recipe_path %>
+    <%= link_to 'Add ingredient', new_recipe_recipes_food_path(@recipe) %>
   </div>
 </div>
 <table class="border-2 border-collapse">

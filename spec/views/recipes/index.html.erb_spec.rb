@@ -14,5 +14,12 @@ RSpec.describe 'recipes/index.html.erb', type: :feature do
         expect(page).to have_content('food')
       end
     end
+
+    context 'When clicking on new recipe button' do
+      it 'can see the name of the recipe' do
+        click_on 'Make a new recipe'
+        expect(current_path).to eq(new_recipe_path)
+      end
+    end
   end
 end
