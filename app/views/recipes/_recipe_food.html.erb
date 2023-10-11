@@ -9,6 +9,6 @@
     <%= recipe_food.calculated_total_value(recipe_food.quantity,recipe_food.food.price) %>
   </td>
   <td>
-    <a href="">Remove</a>
+    <%= button_to 'Remove', recipe_recipes_food_path(recipe_id: @recipe, id: recipe_food), method: :delete %>
   </td>
 </tr>
