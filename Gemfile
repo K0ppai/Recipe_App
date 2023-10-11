@@ -79,4 +79,4 @@ gem 'active_model_serializers', '~> 0.10.13'
 
 gem 'bootstrap', '~> 5.3.1'
 
-gem "cssbundling-rails", "~> 1.3"
+gem 'cssbundling-rails', '~> 1.3'

@@ -1,11 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe "RecipesFoods", type: :request do
-  describe "GET /new" do
-    it "returns http success" do
-      get "/recipes_foods/new"
+RSpec.describe 'RecipesFoods', type: :request do
+  describe 'GET /new' do
+    it 'returns http success' do
+      get '/recipes_foods/new'
       expect(response).to have_http_status(:success)
     end
   end
-
 end

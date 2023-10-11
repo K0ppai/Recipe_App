@@ -8,11 +8,9 @@ class RecipesController < ApplicationController
     @recipe_foods = @recipe.recipe_foods
   end
 
-  def shopping_list
-  end
+  def shopping_list; end
 
-  def modal
-  end
+  def modal; end
 
   def new
     @recipe = Recipe.new
@@ -28,22 +26,18 @@ class RecipesController < ApplicationController
     end
   end
 
-  
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.recipe_foods.destroy_all
     @recipe.destroy
     redirect_to recipes_path, notice: 'Recipe deleted successfully!'
   end
-  
 
-  def new_food
-  end
-  
+  def new_food; end
+
   private
 
   def recipe_params
     params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public)
   end
-
 end

@@ -12,7 +12,7 @@ class RecipesFoodsController < ApplicationController
     if @recipe_food.save
       redirect_to recipe_path(@recipe), notice: 'RecipeFood was successfully created.'
     else
-      render :new, alert: "Something went wrong"
+      render :new, alert: 'Something went wrong'
     end
   end
 
@@ -28,10 +28,10 @@ class RecipesFoodsController < ApplicationController
     @recipe_food.destroy
     redirect_to recipe_path(id: @recipe), notice: 'RecipeFood deleted successfully!'
   end
-  
+
   private
 
   def recipe_food_params
-    params.require(:recipe_food).permit(:quantity, :food_id, food_attributes: [:name, :measurement_unit, :price])
+    params.require(:recipe_food).permit(:quantity, :food_id, food_attributes: %i[name measurement_unit price])
   end
 end
