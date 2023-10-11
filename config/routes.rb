@@ -13,4 +13,6 @@ Rails.application.routes.draw do
 
   get 'inventories/new', to: 'inventories#new'
   post 'inventories/create', to: 'inventories#create'
+  get '/shopping_list', to: 'recipes#shopping_list', as: 'shopping_list'
+  get '/modal', to: 'recipes#modal', as: 'modal'
 end

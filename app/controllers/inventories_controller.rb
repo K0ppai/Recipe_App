@@ -13,6 +13,7 @@ class InventoriesController < ApplicationController
 
   def create
     @inventory = Inventory.new(inventory_params)
+    @inventory.user = current_user
     if @inventory.save
       redirect_to inventories_path, notice: 'Inventory created successfully.'
     else
