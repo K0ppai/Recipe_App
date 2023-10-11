@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'recipes#index'
-  resources :foods
+  resources :foods, only: %i[new create]
 
   resources :inventories do
     resources :inventory_foods, only: %i[new create destroy]
