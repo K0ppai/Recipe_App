@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 20_231_011_115_834) do
     t.bigint 'user_id', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.string 'description'
     t.index ['user_id'], name: 'index_inventories_on_user_id'
   end
 
@@ -69,6 +70,17 @@ ActiveRecord::Schema[7.0].define(version: 20_231_011_115_834) do
     t.string 'name'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.string 'email', default: '', null: false
+    t.string 'encrypted_password', default: '', null: false
+    t.string 'reset_password_token'
+    t.datetime 'reset_password_sent_at'
+    t.datetime 'remember_created_at'
+    t.string 'confirmation_token'
+    t.datetime 'confirmed_at'
+    t.datetime 'confirmation_sent_at'
+    t.string 'unconfirmed_email'
+    t.index ['email'], name: 'index_users_on_email', unique: true
+    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end
 
   add_foreign_key 'inventories', 'users'
