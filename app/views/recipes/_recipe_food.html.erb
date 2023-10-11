@@ -4,6 +4,7 @@
   </td>
   <td>
     <%= recipe_food.quantity %>
+    <%= recipe_food.food.measurement_unit %>
   </td>
   <td>
     <%= recipe_food.calculated_total_value(recipe_food.quantity,recipe_food.food.price) %>

@@ -8,4 +8,6 @@ class RecipeFood < ApplicationRecord
   def calculated_total_value(quantity, price)
     quantity * price
   end
+
+  
 end
