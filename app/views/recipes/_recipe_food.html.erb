@@ -1,0 +1,14 @@
+<tr>
+  <td>
+    <%= recipe_food.food.name %>
+  </td>
+  <td>
+    <%= recipe_food.quantity %>
+  </td>
+  <td>
+    <%= recipe_food.calculated_total_value(recipe_food.quantity,recipe_food.food.price) %>
+  </td>
+  <td>
+    <a href="">Remove</a>
+  </td>
+</tr>

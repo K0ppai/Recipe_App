@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :foods
-
+  
   resources :inventories do
     resources :inventory_foods, only: %i[new create destroy]
   end
