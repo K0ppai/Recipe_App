@@ -19,6 +19,7 @@ class RecipesFoodsController < ApplicationController
   def destroy
     @recipe_food = RecipeFood.find(params[:id])
     @recipe = Recipe.find(params[:recipe_id])
+    # @recipe.totalvaluecounter 
     @recipe_food.destroy
     redirect_to recipe_path(id: @recipe), notice: 'RecipeFood deleted successfully!'
   end
