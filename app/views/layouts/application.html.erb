@@ -11,9 +11,9 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <%= turbo_frame_tag 'modal' %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <%= turbo_frame_tag 'modal' %>
     <%= yield %>
   </body>
 </html>

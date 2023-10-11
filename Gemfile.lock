@@ -320,7 +320,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.13)
   bootsnap
-  bootstrap (~> 5.0)
+  bootstrap (~> 5.3.1)
   cancancan
   capybara
   cssbundling-rails (~> 1.3)

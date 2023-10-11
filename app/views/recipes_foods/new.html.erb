@@ -1,25 +1,11 @@
-<%= form_with model: @recipe_food, url:  recipe_recipes_foods_path, local: true do |f| %>
-  <h2>Create Recipe Food</h2>
+<%= form_with(model: @recipe_food, url:  recipe_recipes_foods_path, local: true) do |f| %>
   <div>
     <%= f.label :quantity %>
     <%= f.number_field :quantity %>
   </div>
-  <h2>Create Food</h2>
   <div>
-    <%= f.fields_for :food do |food_fields| %>
-      <div>
-        <%= food_fields.label :name %>
-        <%= food_fields.text_field :name %>
-      </div>
-      <div>
-        <%= food_fields.label :measurement_unit %>
-        <%= food_fields.text_field :measurement_unit %>
-      </div>
-      <div>
-        <%= food_fields.label :price %>
-        <%= food_fields.number_field :price %>
-      </div>
-    <% end %>
+    <%= f.label :food_id %>
+    <%= f.collection_select(:food_id, Food.all, :id, :name, prompt: 'Select Food') %>
   </div>
   <%= f.submit "Create Recipe Food" %>
 <% end %>
