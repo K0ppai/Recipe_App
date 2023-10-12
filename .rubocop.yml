@@ -14,13 +14,16 @@ Layout/LineLength:
 Metrics/MethodLength:
   Max: 30
 Metrics/AbcSize:
-  Max: 50
+  Max: 60
 Metrics/ClassLength:
   Max: 150
 Metrics/BlockLength:
   IgnoredMethods: ['describe']
   Max: 100
-
+Metrics/PerceivedComplexity:
+  Max: 15
+Metrics/CyclomaticComplexity:
+  Max: 15
 
 Style/Documentation:
   Enabled: false
