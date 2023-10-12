@@ -8,6 +8,8 @@
     <span class="ml-10">
       <%= recipe_card.description %>
     </span>
-    <%= button_to 'Remove', recipe_path(id: recipe_card), method: :delete %>
+    <% if can? :destroy, recipe_card %>
+      <%= button_to 'Remove', recipe_path(id: recipe_card), method: :delete %>
+    <% end %>
   </a>
 </li>
