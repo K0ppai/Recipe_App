@@ -20,7 +20,7 @@ class RecipesController < ApplicationController
         quantity: rf.sum(&:quantity),
         name: rf.first.food.name,
         price: rf.first.food.price,
-        measurement_unit: rf.first.food.measurement_unit,
+        measurement_unit: rf.first.food.measurement_unit
       }
     end
 
@@ -35,15 +35,15 @@ class RecipesController < ApplicationController
       difference = recipe_quantity - inventory_quantity
       calculated_price = food_price * difference
 
-      if difference.positive?
-        hash = {
-          name: food_name,
-          quantity: difference,
-          price: calculated_price,
-          unit: food_unit,
-        }
-        @shopping_lists << hash
-      end
+      next unless difference.positive?
+
+      hash = {
+        name: food_name,
+        quantity: difference,
+        price: calculated_price,
+        unit: food_unit
+      }
+      @shopping_lists << hash
     end
 
     @totalprice = @shopping_lists.sum { |value| value[:price] }
@@ -69,15 +69,15 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe.recipe_foods.destroy_all
     @recipe.destroy
-    redirect_to recipes_path, notice: "Recipe deleted successfully!"
+    redirect_to recipes_path, notice: 'Recipe deleted successfully!'
   end
 
   def update
     @recipe = Recipe.find(params[:id])
     if @recipe.update(recipe_params)
-      redirect_to recipe_path(id: @recipe), notice: "Recipe is now public."
+      redirect_to recipe_path(id: @recipe), notice: 'Recipe is now public.'
     else
-      redirect_to recipe_path(id: @recipe), alert: "Something went wrong"
+      redirect_to recipe_path(id: @recipe), alert: 'Something went wrong'
     end
   end
 

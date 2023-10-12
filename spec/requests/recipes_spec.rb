@@ -12,13 +12,13 @@ RSpec.describe 'Recipes', type: :request do
       get recipes_path
       expect(response).to have_http_status(:success)
     end
-    
+
     it 'should render the correct template' do
       get recipes_path
       expect(response).to render_template(:index)
     end
   end
-  
+
   describe 'GET /recipes/:id' do
     before :each do
       sign_in user

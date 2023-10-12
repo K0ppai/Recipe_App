@@ -5,7 +5,7 @@ RSpec.describe 'recipes/index.html.erb', type: :feature do
 
   describe 'Testing integration specs for recipes index page' do
     before :each do
-      Recipe.create(name: 'food', preparation_time: 20, cooking_time: 10, description: 'this is how', public: false, user: user)
+      Recipe.create(name: 'food', preparation_time: 20, cooking_time: 10, description: 'this is how', public: false, user:)
       login_as(user, scope: :user)
       visit recipes_path
     end
