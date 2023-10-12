@@ -1,15 +1,15 @@
-<li class="border border-2 border-primary p-4 text-danger">
-  <a href="<%= recipe_path(recipe_card) %>" class="flex">
-    <div>
+<li class="border border-2 mb-2 list-unstyled">
+  <a href="<%= recipe_path(recipe_card) %>" class="d-flex flex-row text-black text-decoration-none p-4">
+    <div class="col-4">
       <span class="text-2xl font-bold">
         <%= recipe_card.name %>
       </span>
+      <% if can? :destroy, recipe_card %>
+        <%= button_to 'Remove', recipe_path(id: recipe_card), method: :delete, class: "btn btn-danger m-0 mt-3" %>
+      <% end %>
     </div>
-    <span class="ml-10">
+    <span class="col-8">
       <%= recipe_card.description %>
     </span>
-    <% if can? :destroy, recipe_card %>
-      <%= button_to 'Remove', recipe_path(id: recipe_card), method: :delete %>
-    <% end %>
   </a>
 </li>

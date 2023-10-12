@@ -1,6 +1,6 @@
-<section>
+<section class="m-3 mx-5">
   <h1 class="text-center"><%= @recipe.name %></h1>
-  <div>
+  <div class="d-flex justify-content-between">
     <p>Preparation time: <%= @recipe.preparation_time %>
       <% if @recipe.preparation_time <= 1 %>
         hour
@@ -8,60 +8,56 @@
         hours
       <% end %>
     </p>
-    <p>Total value counter <%= @recipe.totalvaluecounter %></p>
-    <p>Food counter <%= @recipe.foodcounter %></p>
-    <div>
-      <%= form_with(model: @recipe, local: true, html: { method: :patch, id: 'recipe-form' }) do |form| %>
-        <div class="form-check form-switch">
-          <%= form.check_box :public, class: 'form-check-input', id: 'publicSwitch' %>
-          <%= form.label :public, class: 'form-check-label', for: 'publicSwitch' %>
-        </div>
-      <% end %>
-      <% if @recipe.public %>
-        Public
-      <% else %>
-        Private
-      <% end %>
-    </label>
-  </div>
-</div>
-</div>
-<p>Cooking time: <%= @recipe.cooking_time %>
-  <% if @recipe.preparation_time <= 1 %>
-    hour
-  <% else %>
-    hours
-  <% end %>
-</p>
-<% if (can? :read, @recipe) || @recipe.public %>
-  <p><%= @recipe.description %></p>
-  <section>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Generate shopping list
-    </button>
     <% if can? :read, @recipe %>
-      <%= link_to 'Add ingredient', new_recipe_recipes_food_path(@recipe) %>
+      <div class="d-flex align-items-center">
+        <span class="me-1">
+          <% if @recipe.public %>
+            Public
+          <% else %>
+            Private
+          <% end %>
+        </span>
+        <%= form_with(model: @recipe, local: true, html: { method: :patch, id: 'recipe-form' }) do |form| %>
+          <div class="form-check form-switch">
+            <%= form.check_box :public, class: 'form-check-input', id: 'publicSwitch' %>
+          </div>
+        <% end %>
+      </div>
     <% end %>
   </div>
-  <table class="border-2 border-collapse">
-    <tr class="border-2 border-collapse">
-      <th class="border-2 border-collapse">
-        Food
-      </th>
-      <th class="border-2 border-collapse">
-        Quantity
-      </th>
-      <th class="border-2 border-collapse">
-        Value
-      </th>
-      <th class="border-2 border-collapse">
-        Actions
-      </th>
-    </tr>
-    <%= render partial: 'recipe_food', collection: @recipe_foods %>
-  </table>
-<% end %>
+  <p>Cooking time: <%= @recipe.cooking_time %>
+    <% if @recipe.preparation_time <= 1 %>
+      hour
+    <% else %>
+      hours
+    <% end %>
+  </p>
+  <% if (can? :read, @recipe) || @recipe.public %>
+    <p><%= @recipe.description %></p>
+    <div class="d-flex justify-content-between mt-3">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Generate shopping list
+      </button>
+      <% if can? :read, @recipe %>
+        <%= link_to 'Add ingredient', new_recipe_recipes_food_path(@recipe), class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th scope="col">Food</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Value</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: 'recipe_food', collection: @recipe_foods %>
+      </tbody>
+    </table>
+  <% end %>
 </section>
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

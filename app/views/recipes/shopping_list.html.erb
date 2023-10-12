@@ -1,39 +1,37 @@
-<section>
-  <h1 class="text-center">Shopping List</h1>
-  <div>
-    <div class="col-5">
+<section class="container mt-5">
+  <h1 class="text-center mb-4">Shopping List</h1>
+  <div class="row justify-content-between">
+    <div class="col-12 mb-3 d-flex justify-content-between">
       <span>Amount of food to buy: <%= @shopping_lists.size %></span>
-      <a href="<%= recipe_path(@recipe) %>">Recipe<%= @recipe.id %></a>
+      <span>
+        Recipe: 
+        <a href="<%= recipe_path(@recipe) %>" class="ml-2">Recipe<%= @recipe.id %></a>
+      </span>
     </div>
-    <div class="col-5">
+    <div class="col-12 d-flex justify-content-between">
       <span>Total value of food needed: $<%= @totalprice %></span>
-      <a href="<%= inventory_path(@inventory) %>">Inventory: <%= @inventory.id %></a>
+      <span>
+        Inventory: 
+        <a href="<%= inventory_path(@inventory) %>" class="ml-2">Inventory<%= @inventory.id %></a>
+      </span>
     </div>
   </div>
-  <table class="border-2 ">
-    <tr class="border-2">
-      <th class="border-2">
-        Food
-      </th>
-      <th class="border-2">
-        Quantity
-      </th>
-      <th class="border-2">
-        Price
-      </th>
-    </tr>
-    <% @shopping_lists.each do |list| %>
+  <table class="table table-bordered mt-4">
+    <thead>
       <tr>
-        <td>
-          <%= list[:name] %>
-        </td>
-        <td>
-          <%= list[:quantity] %><%= list[:unit] %>
-        </td>
-        <td>
-          <%= list[:price] %>
-        </td>
+        <th scope="col">Food</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% @shopping_lists.each do |list| %>
+        <tr>
+          <td><%= list[:name] %></td>
+          <td><%= list[:quantity] %> <%= list[:unit] %></td>
+          <td>$<%= list[:price] %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 </section>
