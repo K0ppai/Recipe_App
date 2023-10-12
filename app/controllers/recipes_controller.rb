@@ -14,12 +14,12 @@ class RecipesController < ApplicationController
     @inventory_foods = @inventory.inventory_foods.includes(:food)
     @recipe_foods = @recipe.recipe_foods.includes(:food)
 
-    inventory_quantity_by_food_id = @inventory_foods.group_by { |ifood| ifood.food_id }.transform_values { |ifs| ifs.sum(&:quantity) }
-    recipe_quantity_by_food_id = @recipe_foods.group_by { |rfood| rfood.food_id }.transform_values { |rfs| rfs.sum(&:quantity) }
+    inventory_quantity_by_food_id = @inventory_foods.group_by(&:food_id).transform_values { |ifs| ifs.sum(&:quantity) }
+    recipe_quantity_by_food_id = @recipe_foods.group_by(&:food_id).transform_values { |rfs| rfs.sum(&:quantity) }
     puts "This is the inventory_foods #{inventory_quantity_by_food_id}"
     puts "This is recipe_foods #{recipe_quantity_by_food_id}"
 
-    food_prices_by_food_id = @recipe_foods.group_by { |rfood| rfood.food_id }.transform_values { |rfs| rfs.first.food.price }
+    food_prices_by_food_id = @recipe_foods.group_by(&:food_id).transform_values { |rfs| rfs.first.food.price }
     puts "This is foodprice hash #{food_prices_by_food_id}"
 
     food_ids = (inventory_quantity_by_food_id.keys + recipe_quantity_by_food_id.keys).uniq
@@ -64,7 +64,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe.recipe_foods.destroy_all
     @recipe.destroy
-    redirect_to recipes_path, notice: "Recipe deleted successfully!"
+    redirect_to recipes_path, notice: 'Recipe deleted successfully!'
   end
 
   def new_food; end
