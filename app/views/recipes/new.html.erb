@@ -1,20 +1,29 @@
-<%= form_with model: @recipe, url: recipes_path do |f| %>
-  <div class="flex flex-col w-[70%] mx-auto">
-    <%= f.text_field :name, placeholder: 'Name' %>
-    <%= f.number_field :preparation_time, placeholder: 'preparation_time' %>
-    <%= f.number_field :cooking_time, placeholder: 'cooking_time' %>
-    <%= f.text_area :description, placeholder: 'description' %>
-    <div class="flex flex-col">
-      <%= f.label :public, "Privacy" %>
-      <div>
-        <%= f.radio_button :public, true %>
-        <%= f.label :public, "Public", class: "mr-4" %>
+<section>
+  <h1 class="text-center">Create A New Recipe</h1>
+  <%= form_with model: @recipe, url: recipes_path, class: "w-75 mx-auto" do |f| %>
+    <div class="mb-3">
+      <%= f.text_field :name, class: "form-control", placeholder: 'Name' %>
+    </div>
+    <div class="mb-3">
+      <%= f.number_field :preparation_time, class: "form-control", placeholder: 'Preparation Time' %>
+    </div>
+    <div class="mb-3">
+      <%= f.number_field :cooking_time, class: "form-control", placeholder: 'Cooking Time' %>
+    </div>
+    <div class="mb-3">
+      <%= f.text_area :description, class: "form-control", placeholder: 'Description' %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :public, "Privacy", class: "form-label" %>
+      <div class="form-check">
+        <%= f.radio_button :public, true, class: "form-check-input" %>
+        <%= f.label :public, "Public", class: "form-check-label mr-4" %>
       </div>
-      <div>
-        <%= f.radio_button :public, false %>
-        <%= f.label :public, "Private" %>
+      <div class="form-check">
+        <%= f.radio_button :public, false, class: "form-check-input" %>
+        <%= f.label :public, "Private", class: "form-check-label" %>
       </div>
     </div>
-    <%= f.submit "Create" %>
-  </div>
-<% end %>
+    <%= f.submit "Create", class: "btn btn-primary" %>
+  <% end %>
+</div>

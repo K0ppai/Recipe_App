@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'recipes/index.html.erb', type: :feature do
-  let(:user) { User.create(name: 'koppai') }
+  let(:user) { User.create(name: 'koppai', email: 'test@example.com', password: 'password') }
 
   describe 'Testing integration specs for recipes show page' do
     before :each do
@@ -10,6 +10,7 @@ RSpec.describe 'recipes/index.html.erb', type: :feature do
       @recipe_food = RecipeFood.create(recipe: @recipe, food:, quantity: 12)
       @quantity = @recipe_food.quantity
       @price = @recipe_food.food.price
+      login_as(user, scope: :user)
       visit recipe_path(@recipe)
     end
 
@@ -38,14 +39,15 @@ RSpec.describe 'recipes/index.html.erb', type: :feature do
       end
 
       it 'can see the total value of the recipe food' do
-        expect(page).to have_content(@recipe_food.calculated_total_value(@quantity, @price).to_s)
+        expect(page).to have_content(@recipe_food.totalvalue)
       end
     end
 
     context 'When opening a modal' do
       it 'can see the generate button' do
         click_on('Generate shopping list')
-        expect(page).to have_link('Generate')
+        expect(page).to have_content('Generate')
+        expect(page).to have_content('Generating Shopping List')
       end
     end
   end
