@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <h1 class="text-center">Add Food to <%= @inventory.name %></h1>
 
-      <%= form_for [@inventory, @inventory_food], html: { class: 'form' } do |f|
+      <%= form_for [@inventory, @inventory_food], html: { class: 'form', style: 'margin: 0' } do |f|
       %>
       <div class="form-group mb-4">
         <%= f.label :food_id, 'Food' %> <%= f.collection_select :food_id,
@@ -17,6 +17,7 @@
       <div class="text-left mt-3">
         <%= f.submit 'Add Food', class: 'btn btn-success' %>
       </div>
+      <div class="text-left">
       <% end %> <%= link_to 'Back', inventory_path(@inventory), class: 'btn
       btn-secondary mt-3' %>
     </div>
