@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Ability
   include CanCan::Ability
 
@@ -7,6 +5,7 @@ class Ability
     return unless user.present?
 
     can :read, :all
+    cannot :read, Recipe
     can :manage, Recipe, user_id: user.id
   end
 end
