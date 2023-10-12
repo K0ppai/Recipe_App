@@ -11,48 +11,56 @@
     <p>Total value counter <%= @recipe.totalvaluecounter %></p>
     <p>Food counter <%= @recipe.foodcounter %></p>
     <div>
-      <input type="checkbox" <% if @recipe.public %>
-          checked
-        <% end %>
-        >
-      <label>Public</label>
-    </div>
-  </div>
-  <p>Cooking time: <%= @recipe.cooking_time %>
-    <% if @recipe.preparation_time <= 1 %>
-      hour
-    <% else %>
-      hours
-    <% end %>
-  </p>
-  <% if (can? :read, @recipe) || @recipe.public %>
-    <p><%= @recipe.description %></p>
-    <section>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Generate shopping list
-      </button>
-      <% if can? :read, @recipe %>
-        <%= link_to 'Add ingredient', new_recipe_recipes_food_path(@recipe) %>
+      <%= form_with(model: @recipe, local: true, html: { method: :patch, id: 'recipe-form' }) do |form| %>
+        <div class="form-check form-switch">
+          <%= form.check_box :public, class: 'form-check-input', id: 'publicSwitch' %>
+          <%= form.label :public, class: 'form-check-label', for: 'publicSwitch' %>
+        </div>
       <% end %>
-    </div>
-    <table class="border-2 border-collapse">
-      <tr class="border-2 border-collapse">
-        <th class="border-2 border-collapse">
-          Food
-        </th>
-        <th class="border-2 border-collapse">
-          Quantity
-        </th>
-        <th class="border-2 border-collapse">
-          Value
-        </th>
-        <th class="border-2 border-collapse">
-          Actions
-        </th>
-      </tr>
-      <%= render partial: 'recipe_food', collection: @recipe_foods %>
-    </table>
+      <% if @recipe.public %>
+        Public
+      <% else %>
+        Private
+      <% end %>
+    </label>
+  </div>
+</div>
+</div>
+<p>Cooking time: <%= @recipe.cooking_time %>
+  <% if @recipe.preparation_time <= 1 %>
+    hour
+  <% else %>
+    hours
   <% end %>
+</p>
+<% if (can? :read, @recipe) || @recipe.public %>
+  <p><%= @recipe.description %></p>
+  <section>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Generate shopping list
+    </button>
+    <% if can? :read, @recipe %>
+      <%= link_to 'Add ingredient', new_recipe_recipes_food_path(@recipe) %>
+    <% end %>
+  </div>
+  <table class="border-2 border-collapse">
+    <tr class="border-2 border-collapse">
+      <th class="border-2 border-collapse">
+        Food
+      </th>
+      <th class="border-2 border-collapse">
+        Quantity
+      </th>
+      <th class="border-2 border-collapse">
+        Value
+      </th>
+      <th class="border-2 border-collapse">
+        Actions
+      </th>
+    </tr>
+    <%= render partial: 'recipe_food', collection: @recipe_foods %>
+  </table>
+<% end %>
 </section>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
