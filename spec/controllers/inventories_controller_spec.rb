@@ -53,7 +53,6 @@ RSpec.describe InventoriesController, type: :controller do
     end
   end
 
-
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'creates a new inventory' do
