@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.feature 'Add Food to Inventory Page' do
   scenario 'User visits the Add Food to Inventory page' do
     user = create(:user)
-    inventory = create(:inventory, user: user)
-    food = create_list(:food, 5)
+    inventory = create(:inventory, user:)
+    create_list(:food, 5)
 
     login_as(user, scope: :user)
 
