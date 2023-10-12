@@ -3,7 +3,7 @@
 
   <div class="row justify-content-center">
     <% @inventories.each do |inventory| %>
-    <div class="col-md-4 mb-4">
+    <div class="col-md-6 mb-4" style="width: 60%;">
       <div
         class="card"
         onclick="location.href='<%= inventory_path(inventory) %>';"
@@ -12,13 +12,16 @@
         <div class="card-body">
           <h5 class="card-title"><%= inventory.name %></h5>
           <p class="card-text"><%= inventory.description %></p>
+          <% if inventory.user == current_user %>
+          <%= button_to 'Delete', inventory_path(inventory), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          <% end %>
         </div>
       </div>
     </div>
     <% end %>
   </div>
 
-  <div class="text-center mt-4">
+  <div class="text-center mt-4 mb-4">
     <%= link_to 'Add Inventory', new_inventory_path, class: 'btn btn-success' %>
   </div>
 </div>
