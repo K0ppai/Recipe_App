@@ -37,3 +37,22 @@
   align-items: center;
   min-height: 100vh;
 }
+.card {
+  align-items: center;
+  padding: 10px 0 10px 0;
+}
+
+.card-content {
+  display: flex;
+  gap: 30px;
+}
+
+.sub-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-link {
+  text-decoration: none;
+  color: black;
+}
