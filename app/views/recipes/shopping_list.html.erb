@@ -1,1 +1,37 @@
-this is shopping_list_path
+<section class="container mt-5">
+  <h1 class="text-center mb-4">Shopping List</h1>
+  <div class="row justify-content-between">
+    <div class="col-12 mb-3 d-flex justify-content-between">
+      <span>Amount of food to buy: <%= @shopping_lists.size %></span>
+      <span>
+        Recipe: 
+        <a href="<%= recipe_path(@recipe) %>" class="ml-2">Recipe<%= @recipe.id %></a>
+      </span>
+    </div>
+    <div class="col-12 d-flex justify-content-between">
+      <span>Total value of food needed: $<%= @totalprice %></span>
+      <span>
+        Inventory: 
+        <a href="<%= inventory_path(@inventory) %>" class="ml-2">Inventory<%= @inventory.id %></a>
+      </span>
+    </div>
+  </div>
+  <table class="table table-bordered mt-4">
+    <thead>
+      <tr>
+        <th scope="col">Food</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shopping_lists.each do |list| %>
+        <tr>
+          <td><%= list[:name] %></td>
+          <td><%= list[:quantity] %> <%= list[:unit] %></td>
+          <td>$<%= list[:price] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

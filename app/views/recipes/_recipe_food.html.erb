@@ -1,15 +1,15 @@
 <tr>
-  <td>
+  <td class="border-2 p-2">
     <%= recipe_food.food.name %>
   </td>
-  <td>
+  <td class="border-2 p-2">
     <%= recipe_food.quantity %>
     <%= recipe_food.food.measurement_unit %>
   </td>
-  <td>
-    <%= recipe_food.totalvalue %>
+  <td class="border-2 p-2">
+    $ <%= recipe_food.totalvalue %>
   </td>
-  <td>
-    <%= button_to 'Remove', recipe_recipes_food_path(recipe_id: @recipe, id: recipe_food), method: :delete %>
+  <td class="border-2 p-2">
+    <%= button_to 'Remove', recipe_recipes_food_path(recipe_id: @recipe, id: recipe_food), method: :delete,class:"btn btn-danger m-0" %>
   </td>
 </tr>
