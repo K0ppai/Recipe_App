@@ -15,33 +15,38 @@ class RecipesController < ApplicationController
     @recipe_foods = @recipe.recipe_foods.includes(:food)
 
     inventory_quantities = @inventory_foods.group_by(&:food_id).transform_values { |ifs| ifs.sum(&:quantity) }
-    recipe_quantities = @recipe_foods.group_by(&:food_id).transform_values { |rfs| rfs.sum(&:quantity) }
-    puts "This is the inventory_foods #{inventory_quantities}"
-    puts "This is recipe_foods #{recipe_quantities}"
+    recipes = @recipe_foods.group_by(&:food_id).transform_values do |rf|
+      {
+        quantity: rf.sum(&:quantity),
+        name: rf.first.food.name,
+        price: rf.first.food.price,
+        measurement_unit: rf.first.food.measurement_unit
+      }
+    end
 
-    food_prices = @recipe_foods.group_by(&:food_id).transform_values { |rfs| rfs.first.food.price }
-    puts "This is foodprice hash #{food_prices}"
+    @shopping_lists = []
 
-    food_ids = (inventory_quantities.keys + recipe_quantities.keys).uniq
-    puts "This is after combing the foodid keys #{food_ids}"
-
-    shopping_lists = Hash.new { |hash, key| hash[key] = { quantity: 0, price: 0 } }
-
-    food_ids.each do |food_id|
-      inventory_quantity = inventory_quantities[food_id].to_i
-      recipe_quantity = recipe_quantities[food_id].to_i
-      food_price = food_prices[food_id].to_i
+    recipes.keys.each do |food_id|
+      inventory_quantity = inventory_quantities.keys.include?(food_id) ? inventory_quantities[food_id] : 0
+      recipe_quantity = recipes[food_id][:quantity]
+      food_price = recipes[food_id][:price]
+      food_name = recipes[food_id][:name]
+      food_unit = recipes[food_id][:measurement_unit]
       difference = recipe_quantity - inventory_quantity
+      calculated_price = food_price * difference
 
       if difference.positive?
-        shopping_lists[food_id][:quantity] = difference
-        shopping_lists[food_id][:price] = food_price * shopping_lists[food_id][:quantity]
+        hash = {
+          name: food_name,
+          quantity: difference,
+          price: calculated_price,
+          unit: food_unit
+        }
+        @shopping_lists << hash
       end
     end
-    puts "this is final result #{shopping_lists}"
 
-    totalprice = shopping_lists.values.sum { |value| value[:price] }
-    puts "This is the total price #{totalprice}"
+    @totalprice = @shopping_lists.sum { |value| value[:price] }
   end
 
   def modal; end
@@ -64,7 +69,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe.recipe_foods.destroy_all
     @recipe.destroy
-    redirect_to recipes_path, notice: 'Recipe deleted successfully!'
+    redirect_to recipes_path, notice: "Recipe deleted successfully!"
   end
 
   def new_food; end
