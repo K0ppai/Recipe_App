@@ -5,18 +5,9 @@ class InventoryFoodsController < ApplicationController
     @inventory_food = InventoryFood.new
   end
 
-  # def create
-  #   @inventory_food = @inventory.inventory_foods.build(inventory_food_params)
-  #   if @inventory_food.save
-  #     redirect_to inventory_path(@inventory), notice: 'Food added successfully.'
-  #   else
-  #     render :new
-  #   end
-  # end
-
   def create
     food_id = inventory_food_params[:food_id]
-    existing_food = @inventory.inventory_foods.find_by(food_id:)
+    existing_food = @inventory.inventory_foods.find_by(food_id: food_id)
 
     if existing_food
       existing_food.quantity += inventory_food_params[:quantity].to_i
