@@ -24,6 +24,17 @@ class InventoriesController < ApplicationController
     end
   end
 
+  def destroy
+    @inventory = Inventory.find(params[:id])
+
+    if @inventory.user == current_user
+      @inventory.destroy
+      redirect_to inventories_path, notice: 'Inventory deleted successfully.'
+    else
+      redirect_to inventories_path, alert: "You don't have permission to delete this inventory."
+    end
+  end
+
   private
 
   def inventory_params
