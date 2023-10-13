@@ -22,5 +22,12 @@ RSpec.describe 'recipes/index.html.erb', type: :feature do
         expect(current_path).to eq(new_recipe_path)
       end
     end
+
+    context 'When clicking on remove button' do
+      it 'cannot see the name of the recipe' do
+        click_on 'Remove'
+        expect(page).not_to have_content('food')
+      end
+    end
   end
 end

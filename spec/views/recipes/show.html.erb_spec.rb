@@ -57,5 +57,12 @@ RSpec.describe 'recipes/show.html.erb', type: :feature do
         expect(current_path).to eq new_recipe_recipes_food_path(recipe_id: @recipe)
       end
     end
+
+    context 'When clicking remove button for ingredient' do
+      it 'should remove the ingredient' do
+        click_on 'Remove'
+        expect(page).not_to have_content(@recipe_food.food.name)
+      end
+    end
   end
 end
