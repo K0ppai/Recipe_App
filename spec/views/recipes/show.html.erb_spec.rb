@@ -5,8 +5,10 @@ RSpec.describe 'recipes/show.html.erb', type: :feature do
 
   describe 'Testing integration specs for recipes show page' do
     before :each do
+      @inventory = Inventory.create(user:, name: 'Home', description: 'Home Remedies')
       @recipe = Recipe.create(name: 'food', preparation_time: 20, cooking_time: 10, description: 'this is how', public: false, user:)
       food = Food.create(name: 'rice', measurement_unit: 'g', price: 20)
+      @inventory_food = InventoryFood.create(quantity: 2, inventory: @inventory, food:)
       @recipe_food = RecipeFood.create(recipe: @recipe, food:, quantity: 12)
       @quantity = @recipe_food.quantity
       @price = @recipe_food.food.price
@@ -44,10 +46,20 @@ RSpec.describe 'recipes/show.html.erb', type: :feature do
     end
 
     context 'When opening a modal' do
-      it 'can see the generate button' do
+      before :each do
         click_on('Generate shopping list')
+      end
+
+      it 'can see the generate button' do
         expect(page).to have_content('Generate')
         expect(page).to have_content('Generating Shopping List')
+      end
+
+      it 'should lead to shopping list path after choosing in inventory' do
+        select 'Home', from: 'inventory_id'
+        click_button 'Generate'
+        expect(page).to have_text('10 g')
+        expect(current_path).to eq(shopping_list_path)
       end
     end
 

@@ -55,11 +55,10 @@
         <%= render partial: 'recipe_food', collection: @recipe_foods %>
       </tbody>
     </table>
-    <% else %>
+  <% else %>
     <p class="text-center fs-3">This is private a recipe.</p>
   <% end %>
 </section>
-
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -70,7 +69,7 @@
       <div class="modal-body">
         <h2>Choose an inventory to use</h2>
         <%= form_with url: shopping_list_path, method: :get do |form|%>
-          <%= form.select :inventory_id, options_from_collection_for_select(Inventory.all, 'id', 'name'), { prompt: 'Select an inventory' }, class: 'form-control' %>
+          <%= form.select :inventory_id, options_from_collection_for_select(Inventory.all, 'id', 'name'), { prompt: 'Select an inventory' }, { class: 'form-control', required: true } %>
           <%= form.submit 'Generate', class: 'btn btn-primary' %>
           <%= form.hidden_field :recipe_id, value: @recipe.id %>
         <% end %>
