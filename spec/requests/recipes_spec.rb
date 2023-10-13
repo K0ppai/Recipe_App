@@ -37,11 +37,11 @@ RSpec.describe 'Recipes', type: :request do
       sign_in user
       get new_recipe_path
     end
-    
+
     it 'returns http success' do
       expect(response.status).to be 200
     end
-    
+
     it 'should render the correct template' do
       expect(response).to render_template(:new)
     end

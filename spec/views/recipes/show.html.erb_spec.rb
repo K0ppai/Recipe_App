@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'recipes/index.html.erb', type: :feature do
+RSpec.describe 'recipes/show.html.erb', type: :feature do
   let(:user) { User.create(name: 'koppai', email: 'test@example.com', password: 'password') }
 
   describe 'Testing integration specs for recipes show page' do
@@ -48,6 +48,13 @@ RSpec.describe 'recipes/index.html.erb', type: :feature do
         click_on('Generate shopping list')
         expect(page).to have_content('Generate')
         expect(page).to have_content('Generating Shopping List')
+      end
+    end
+
+    context 'When clicking add ingredient btn' do
+      it 'should visit new_recipe_recipes_food_path' do
+        click_on 'Add ingredient'
+        expect(current_path).to eq new_recipe_recipes_food_path(recipe_id: @recipe)
       end
     end
   end
