@@ -55,6 +55,8 @@
         <%= render partial: 'recipe_food', collection: @recipe_foods %>
       </tbody>
     </table>
+    <% else %>
+    <p class="text-center fs-3">This is private a recipe.</p>
   <% end %>
 </section>
 
