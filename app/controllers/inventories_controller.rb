@@ -28,7 +28,10 @@ class InventoriesController < ApplicationController
     @inventory = Inventory.find(params[:id])
 
     if @inventory.user == current_user
+      @inventory.inventory_foods.destroy_all
+
       @inventory.destroy
+
       redirect_to inventories_path, notice: 'Inventory deleted successfully.'
     else
       redirect_to inventories_path, alert: "You don't have permission to delete this inventory."
