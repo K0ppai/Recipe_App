@@ -7,13 +7,10 @@ Rails.application.routes.draw do
     resources :recipes_foods, only: %i[new create destroy]
   end
 
-  resources :inventories do
+  resources :inventories, only: %i[index show new create destroy] do
     resources :inventory_foods, only: %i[new create destroy]
   end
-  resources :public_recipes
+  resources :public_recipes, only: %i[index]
 
-  get 'inventories/new', to: 'inventories#new'
-  post 'inventories/create', to: 'inventories#create'
   get '/shopping_list', to: 'recipes#shopping_list', as: 'shopping_list'
-  get '/modal', to: 'recipes#modal', as: 'modal'
 end
