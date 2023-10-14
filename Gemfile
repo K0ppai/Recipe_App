@@ -18,7 +18,8 @@ gem 'cancancan'
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem 'devise'
+gem 'devise', '~> 4.9.0'
+
 gem 'importmap-rails'
 gem 'rswag'
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
