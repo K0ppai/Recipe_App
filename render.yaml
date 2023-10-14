@@ -1,12 +1,12 @@
 databases:
   - name: postgres
     ipAllowList: []
-    databaseName: Recipe_App
-    user: Recipe_App
+    databaseName: recipe_app
+    user: recipe_app
 
 services:
   - type: web
-    name: Recipe_App
+    name: recipe_app
     env: ruby
     buildCommand: "./render-build.sh"
     startCommand: "bundle exec rails s"
