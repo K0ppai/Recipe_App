@@ -1,0 +1,4 @@
+<main class="m-5">
+  <%= render partial: 'recipe_card', collection: @recipes %>
+  <%= link_to 'Make a new recipe', new_recipe_path, class: 'btn btn-primary' %>
+</main>

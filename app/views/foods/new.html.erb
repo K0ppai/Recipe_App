@@ -1,0 +1,24 @@
+<div class="form">
+<h1>Add New Food</h1>
+
+<%= form_with(model: @food, url: foods_path) do |form| %>
+
+    <div class=" mb-3">
+    <%= form.label :name,class: "form-label"  %>
+    <%= form.text_field :name, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+    <%= form.label :Measurement_Unit, class: "form-label" %> 
+    <%= form.text_field :measurement_unit, class: "form-control" %>
+    </div>
+     <div class="mb-3">
+    <%= form.label :price, class: "form-label"  %> 
+    <%= form.text_field :price, class: "form-control" %>
+   
+<div class="post-btn">
+<p><%=form.submit "Create Food", class: "btn"%></p>
+</div>
+</div>
+<% end %>
+<%= flash[:error] %>
+ </div>

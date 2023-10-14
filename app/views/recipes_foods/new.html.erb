@@ -1,0 +1,15 @@
+<div>
+  <h1 class="text-center">Add a New Ingredient</h1>
+  <div class="col-6 mx-auto">
+    <%= form_with(model: @recipe_food, url: recipe_recipes_foods_path, local: true) do |f| %>
+      <div class="form-floating mb-3">
+        <%= f.number_field :quantity, class: "form-control" %>
+        <%= f.label :quantity, for: "floatingInput" %>
+      </div>
+      <div>
+        <%= f.collection_select(:food_id, Food.all, :id, :name, { include_blank: 'Select Food' }, { class: 'form-select' }) %>
+      </div>
+      <%= f.submit "Create Recipe Food", class: 'btn btn-primary'%>
+    <% end %>
+  </div>
+</div>
